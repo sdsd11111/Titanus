@@ -42,11 +42,22 @@ export const Hero = () => {
         const handleCustomOpen = () => setIsModalOpen(true);
         document.addEventListener('open-wizard-modal', handleCustomOpen);
 
-        // Check for URL param ?participar=true
-        const params = new URLSearchParams(window.location.search);
-        if (params.get('participar') === 'true') {
-            setIsModalOpen(true);
-        }
+        // Check for URL param ?participar=true or hash #formulario/#participar
+        const checkUrlParams = () => {
+            const params = new URLSearchParams(window.location.search);
+            const hash = window.location.hash;
+
+            if (params.get('participar') === 'true' ||
+                hash === '#formulario' ||
+                hash === '#participar') {
+                setIsModalOpen(true);
+            }
+        };
+
+        checkUrlParams();
+
+        // Also listen for hash changes without reloading
+        window.addEventListener('hashchange', checkUrlParams);
 
         return () => document.removeEventListener('open-wizard-modal', handleCustomOpen);
     }, []);
