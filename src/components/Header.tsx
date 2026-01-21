@@ -30,6 +30,7 @@ export const Header = () => {
                         className="h-7 md:h-10 w-auto object-contain"
                         width="40"
                         height="40"
+                        fetchPriority="high"
                     />
                     <span className="font-display text-lg md:text-2xl tracking-tighter text-white italic">
                         TITANUS<span className="text-titanus-yellow">.</span>

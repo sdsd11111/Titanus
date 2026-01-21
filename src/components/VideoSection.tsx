@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Play, X, Zap, Box } from 'lucide-react';
 
 export const VideoSection = () => {
     // State to handle device type for conditional video rendering
-    const [isMobile, setIsMobile] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLElement>(null);
 
@@ -14,19 +13,6 @@ export const VideoSection = () => {
     });
 
     const videoY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.matchMedia('(max-width: 768px)').matches);
-        };
-
-        // Initial check
-        checkMobile();
-
-        // Add listener
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     return (
         <section
@@ -60,35 +46,18 @@ export const VideoSection = () => {
                             style={{ y: videoY }}
                             className="absolute inset-0 w-full h-[120%]"
                         >
-                            {/* Desktop Video */}
-                            {!isMobile && (
-                                <video
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    preload="metadata"
-                                    title="Titanus Gym Experience - Desktop"
-                                    className="hidden md:block w-full h-full object-cover grayscale opacity-40 brightness-50 contrast-125 will-change-transform"
-                                >
-                                    <source src="/images/video-ordenador.mp4" type="video/mp4" />
-                                </video>
-                            )}
-
-                            {/* Mobile Video */}
-                            {isMobile && (
-                                <video
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    preload="metadata"
-                                    title="Titanus Gym Experience - Mobile"
-                                    className="block md:hidden w-full h-full object-cover grayscale opacity-40 brightness-50 contrast-125 will-change-transform"
-                                >
-                                    <source src="/images/video-movil.mp4" type="video/mp4" />
-                                </video>
-                            )}
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                preload="metadata"
+                                title="Titanus Gym Experience"
+                                className="w-full h-full object-cover grayscale opacity-40 brightness-50 contrast-125 [will-change:transform]"
+                            >
+                                <source src="/images/video-ordenador.mp4" type="video/mp4" media="(min-width: 769px)" />
+                                <source src="/images/video-movil.mp4" type="video/mp4" media="(max-width: 768px)" />
+                            </video>
                         </motion.div>
 
                         {/* Dark Gradient Overlay */}
@@ -181,31 +150,14 @@ export const VideoSection = () => {
                             exit={{ scale: 0.9, opacity: 0 }}
                             className="relative w-full md:max-w-6xl md:aspect-video rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center h-[80vh] md:h-auto"
                         >
-                            {/* Desktop Video Modal */}
-                            {!isMobile && (
-                                <div className="hidden md:block w-full h-full">
-                                    <video
-                                        controls
-                                        autoPlay
-                                        className="w-full h-full object-contain bg-black"
-                                    >
-                                        <source src="/images/video-ordenador.mp4" type="video/mp4" />
-                                    </video>
-                                </div>
-                            )}
-
-                            {/* Mobile Video Modal */}
-                            {isMobile && (
-                                <div className="block md:hidden w-full h-full">
-                                    <video
-                                        controls
-                                        autoPlay
-                                        className="w-full h-full object-cover rounded-2xl bg-black"
-                                    >
-                                        <source src="/images/video-movil.mp4" type="video/mp4" />
-                                    </video>
-                                </div>
-                            )}
+                            <video
+                                controls
+                                autoPlay
+                                className="w-full h-full object-contain bg-black"
+                            >
+                                <source src="/images/video-ordenador.mp4" type="video/mp4" media="(min-width: 769px)" />
+                                <source src="/images/video-movil.mp4" type="video/mp4" media="(max-width: 768px)" />
+                            </video>
                         </motion.div>
                     </motion.div>
                 )}

@@ -202,15 +202,12 @@ export const Hero = () => {
                 className="relative z-30 container mx-auto px-4 pt-32 md:pt-20 text-center flex flex-col items-center [contain:layout_paint] min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
             >
                 {/* Main Headline Group */}
-                <div className="relative mb-6">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-7xl md:text-9xl lg:text-[13rem] font-display font-black italic tracking-tighter leading-[0.85] md:leading-none select-none relative flex flex-col items-center will-change-transform"
+                <div className="relative mb-6 min-h-[1em] md:min-h-[0.9em] flex items-center justify-center">
+                    <div
+                        className="text-7xl md:text-9xl lg:text-[13rem] font-display font-black italic tracking-tighter leading-[0.85] md:leading-none select-none relative flex flex-col items-center will-change-transform opacity-100"
                     >
                         {/* Stroke Effect Layer */}
-                        <div className="absolute inset-0 text-transparent [-webkit-text-stroke:1px_#FFD700] md:[-webkit-text-stroke:3px_#FFD700] translate-x-1 translate-y-1 md:translate-x-1.5 md:translate-y-1.5 opacity-40 will-change-transform">
+                        <div className="absolute inset-0 text-transparent [-webkit-text-stroke:1px_#FFD700] md:[-webkit-text-stroke:3px_#FFD700] translate-x-1 translate-y-1 md:translate-x-1.5 md:translate-y-1.5 opacity-40 will-change-transform" aria-hidden="true">
                             <span className="block md:inline">TITANUS</span>{' '}
                             <span className="block md:inline whitespace-nowrap">GYM</span>
                         </div>
@@ -219,27 +216,21 @@ export const Hero = () => {
                             <span className="block md:inline">TITANUS</span>{' '}
                             <span className="block md:inline whitespace-nowrap">GYM</span>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Catchy H1 for SEO */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-lg md:text-4xl lg:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 uppercase tracking-widest mb-2 md:mb-4 max-w-6xl"
+                <h1
+                    className="text-lg md:text-4xl lg:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 uppercase tracking-widest mb-2 md:mb-4 max-w-6xl opacity-100"
                 >
                     EL #1 MEJOR GIMNASIO EN LOJA
-                </motion.h1>
+                </h1>
 
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-base md:text-4xl font-display font-black text-titanus-yellow uppercase mb-6 md:mb-10 tracking-[0.1em] drop-shadow-[0_0_20px_rgba(255,215,0,0.4)]"
+                <h2
+                    className="text-base md:text-4xl font-display font-black text-titanus-yellow uppercase mb-6 md:mb-10 tracking-[0.1em] drop-shadow-[0_0_20px_rgba(255,215,0,0.4)] opacity-100"
                 >
                     TU TRANSFORMACIÓN COMIENZA AQUÍ
-                </motion.h2>
+                </h2>
 
                 {/* High Impact CTA Button */}
                 <motion.button
