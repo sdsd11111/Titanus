@@ -155,6 +155,8 @@ export const Gallery = () => {
                                     alt={item.title}
                                     loading="lazy"
                                     className="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                                    width="600"
+                                    height="800"
                                 />
 
                                 {/* Content Overlay */}

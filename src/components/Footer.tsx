@@ -12,6 +12,8 @@ export const Footer = () => {
                                 src="/images/logo.webp"
                                 alt="Titanus Gym Logo"
                                 className="h-12 w-auto object-contain"
+                                width="48"
+                                height="48"
                             />
                             <h3 className="font-display text-3xl italic text-white">
                                 TITANUS<span className="text-titanus-yellow">.</span>
@@ -21,10 +23,10 @@ export const Footer = () => {
                             Forjando leyendas en Loja desde 2018. Únete a la comunidad más fuerte de la ciudad.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
+                            <a href="https://instagram.com/titanusgymloja" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Instagram de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
                                 <Instagram size={20} />
                             </a>
-                            <a href="#" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
+                            <a href="https://facebook.com/titanusgymloja" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Facebook de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
                                 <Facebook size={20} />
                             </a>
                         </div>

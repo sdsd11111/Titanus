@@ -151,6 +151,9 @@ export const Hero = () => {
                         alt="High intensity workout"
                         className="w-full h-full object-cover brightness-[0.5] contrast-125 transition-all duration-700"
                         loading="eager"
+                        fetchPriority="high"
+                        width="1920"
+                        height="1080"
                     />
                 </motion.div>
 
@@ -173,7 +176,8 @@ export const Hero = () => {
             <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden pointer-events-none">
                 <motion.div
                     style={{ y: textY }}
-                    className="text-[25vw] font-display font-black text-white/[0.03] italic tracking-tighter leading-none select-none whitespace-nowrap"
+                    className="text-[25vw] font-display font-black text-white/[0.03] italic tracking-tighter leading-none select-none whitespace-nowrap will-change-transform"
+                    aria-hidden="true"
                 >
                     TITANUS TITANUS
                 </motion.div>
@@ -195,7 +199,7 @@ export const Hero = () => {
             {/* Layer 3: Main Content Layer */}
             <motion.div
                 style={{ y: titleY, opacity: titleOpacity }}
-                className="relative z-30 container mx-auto px-4 pt-32 md:pt-20 text-center flex flex-col items-center"
+                className="relative z-30 container mx-auto px-4 pt-32 md:pt-20 text-center flex flex-col items-center [contain:layout_paint] min-h-[60vh] md:min-h-[80vh] flex items-center justify-center"
             >
                 {/* Main Headline Group */}
                 <div className="relative mb-6">

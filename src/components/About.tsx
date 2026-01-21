@@ -77,8 +77,8 @@ export const About = () => {
                                 alt="Titanus Fitness Loja - Instalaciones"
                                 className="w-full h-full object-cover min-h-[500px] grayscale brightness-75 hover:grayscale-0 transition-all duration-700 md:group-hover:scale-105 will-change-transform"
                                 loading="lazy"
-                                width="800"
-                                height="600"
+                                width="750"
+                                height="500"
                             />
                         </div>
 
@@ -95,8 +95,8 @@ export const About = () => {
                                 alt="Entrenamiento Elite"
                                 className="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-700 will-change-transform"
                                 loading="lazy"
-                                width="400"
-                                height="400"
+                                width="320"
+                                height="240"
                             />
                         </motion.div>
 

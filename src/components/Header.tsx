@@ -28,6 +28,8 @@ export const Header = () => {
                         src="/images/logo.webp"
                         alt="Titanus Gym Logo"
                         className="h-7 md:h-10 w-auto object-contain"
+                        width="40"
+                        height="40"
                     />
                     <span className="font-display text-lg md:text-2xl tracking-tighter text-white italic">
                         TITANUS<span className="text-titanus-yellow">.</span>
@@ -38,6 +40,7 @@ export const Header = () => {
                 <div className="flex items-center">
                     <button
                         onClick={() => document.dispatchEvent(new CustomEvent('open-wizard-modal'))}
+                        aria-label="Participar en el sorteo de Titanus Gym"
                         className="
                             px-3 py-2 text-[9px] 
                             md:px-6 md:py-2 md:text-sm 

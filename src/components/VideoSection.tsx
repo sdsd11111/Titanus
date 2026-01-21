@@ -68,6 +68,7 @@ export const VideoSection = () => {
                                     muted
                                     playsInline
                                     preload="metadata"
+                                    title="Titanus Gym Experience - Desktop"
                                     className="hidden md:block w-full h-full object-cover grayscale opacity-40 brightness-50 contrast-125 will-change-transform"
                                 >
                                     <source src="/images/video-ordenador.mp4" type="video/mp4" />
@@ -82,6 +83,7 @@ export const VideoSection = () => {
                                     muted
                                     playsInline
                                     preload="metadata"
+                                    title="Titanus Gym Experience - Mobile"
                                     className="block md:hidden w-full h-full object-cover grayscale opacity-40 brightness-50 contrast-125 will-change-transform"
                                 >
                                     <source src="/images/video-movil.mp4" type="video/mp4" />
@@ -114,6 +116,7 @@ export const VideoSection = () => {
                                     />
                                     <button
                                         onClick={() => setIsOpen(true)}
+                                        aria-label="Reproducir video de experiencia Titanus"
                                         className="relative w-16 h-16 md:w-24 md:h-24 bg-titanus-yellow text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-[0_0_30px_rgba(255,215,0,0.5)] z-30 group"
                                     >
                                         <Play size={32} className="ml-1 fill-black group-hover:scale-110 transition-transform" />
