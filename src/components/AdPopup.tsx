@@ -49,7 +49,7 @@ export const AdPopup = () => {
                     initial={{ opacity: 0, scale: 0.8, x: -20 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 0.8, x: -20 }}
-                    className="fixed bottom-6 left-4 z-[60] w-[200px] md:w-[320px]"
+                    className="fixed bottom-6 left-4 z-[60] w-[180px] md:w-[320px]"
                 >
                     <div className="relative group p-1 bg-gradient-to-br from-titanus-yellow to-yellow-600 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
                         <button
@@ -63,7 +63,7 @@ export const AdPopup = () => {
                             <img
                                 src={activeAd.image}
                                 alt={activeAd.title}
-                                className="w-full h-auto object-cover max-h-[200px] md:max-h-[300px]"
+                                className="w-full h-auto object-cover max-h-[110px] md:max-h-[250px]"
                             />
                             <div className="p-3 md:p-4">
                                 <h4 className="text-white font-black text-[10px] md:text-sm uppercase italic mb-1 line-clamp-1">{activeAd.title}</h4>

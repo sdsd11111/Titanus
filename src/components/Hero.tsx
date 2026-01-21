@@ -204,7 +204,7 @@ export const Hero = () => {
                 {/* Main Headline Group */}
                 <div className="relative mb-6 min-h-[1em] md:min-h-[0.9em] flex items-center justify-center">
                     <div
-                        className="text-7xl md:text-9xl lg:text-[13rem] font-display font-black italic tracking-tighter leading-[0.85] md:leading-none select-none relative flex flex-col items-center will-change-transform opacity-100"
+                        className="text-7xl md:text-9xl lg:text-[13rem] font-display font-black tracking-tighter leading-[0.85] md:leading-none select-none relative flex flex-col items-center will-change-transform opacity-100"
                     >
                         {/* Stroke Effect Layer */}
                         <div className="absolute inset-0 text-transparent [-webkit-text-stroke:1px_#FFD700] md:[-webkit-text-stroke:3px_#FFD700] translate-x-1 translate-y-1 md:translate-x-1.5 md:translate-y-1.5 opacity-40 will-change-transform" aria-hidden="true">
