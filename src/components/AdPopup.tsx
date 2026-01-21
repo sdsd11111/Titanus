@@ -72,8 +72,20 @@ export const AdPopup = () => {
                                 {activeAd.ctaText && (
                                     <a
                                         href={activeAd.ctaLink || '#'}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        onClick={(e) => {
+                                            const link = activeAd.ctaLink;
+                                            if (link?.startsWith('#')) {
+                                                e.preventDefault();
+                                                if (link === '#formulario') {
+                                                    document.dispatchEvent(new Event('open-wizard-modal'));
+                                                } else {
+                                                    window.location.hash = link;
+                                                }
+                                                setIsVisible(false);
+                                            }
+                                        }}
+                                        target={activeAd.ctaLink?.startsWith('#') ? undefined : "_blank"}
+                                        rel={activeAd.ctaLink?.startsWith('#') ? undefined : "noopener noreferrer"}
                                         className="block w-full bg-titanus-yellow text-black font-black text-[9px] md:text-xs text-center py-2 md:py-2.5 rounded-lg uppercase tracking-wider hover:bg-yellow-400 transition-colors"
                                     >
                                         {activeAd.ctaText}
