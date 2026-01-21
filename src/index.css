@@ -1,0 +1,16 @@
+@import 'leaflet/dist/leaflet.css';
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-titanus-black text-white font-sans overflow-x-hidden;
+  }
+}
