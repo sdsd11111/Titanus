@@ -12,9 +12,11 @@ import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { Admin } from './components/Admin';
 import { AdPopup } from './components/AdPopup';
+import { Preloader } from './components/Preloader';
 
 const LandingPage = () => (
   <>
+    <Preloader />
     <Header />
     <main>
       <Hero />
@@ -37,7 +39,7 @@ function App() {
     <div className="min-h-screen bg-titanus-black text-white selection:bg-titanus-yellow selection:text-black">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<><Preloader /><Admin /></>} />
       </Routes>
     </div >
   );
