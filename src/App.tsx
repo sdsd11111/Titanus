@@ -12,6 +12,7 @@ import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 import { Admin } from './components/Admin';
 import { AdPopup } from './components/AdPopup';
+import { RegistrationPage } from './components/RegistrationPage';
 
 const LandingPage = () => (
   <>
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/registro" element={<RegistrationPage />} />
       </Routes>
     </div>
   );
