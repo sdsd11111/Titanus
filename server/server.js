@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const db = require('./db');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import db from './db.js';
+import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -39,7 +39,7 @@ app.get('/api/ads', async (req, res) => {
 app.post('/api/ads', async (req, res) => {
     try {
         const { id, image, title, description, ctaText, ctaLink, isActive, createdAt } = req.body;
-        const [result] = await db.execute(
+        await db.execute(
             'INSERT INTO ads (id, image, title, description, ctaText, ctaLink, isActive, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
             [id, image, title, description, ctaText, ctaLink, isActive, createdAt]
         );
