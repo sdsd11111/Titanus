@@ -34,12 +34,11 @@ export const Admin = () => {
         fetchAds();
     }, []);
 
-    const fetchAds = async () => {
+    const fetchAds = () => {
         try {
-            const response = await fetch('/api/ads');
-            if (response.ok) {
-                const data = await response.json();
-                setAds(data);
+            const storedAds = localStorage.getItem('titanus_ads');
+            if (storedAds) {
+                setAds(JSON.parse(storedAds));
             }
         } catch (error) {
             console.error('Error fetching ads:', error);
@@ -73,7 +72,7 @@ export const Admin = () => {
         }
     };
 
-    const createAd = async () => {
+    const createAd = () => {
         if (!previewImage || !title || !description) return;
 
         const newAd: Ad = {
@@ -88,45 +87,41 @@ export const Admin = () => {
         };
 
         try {
-            const response = await fetch('/api/ads', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newAd)
-            });
+            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
+            const updatedAds = [newAd, ...currentAds];
+            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
 
-            if (response.ok) {
-                fetchAds();
-                // Reset form
-                setPreviewImage(null);
-                setTitle('');
-                setDescription('');
-                setCtaText('');
-                setCtaLink('');
-            }
+            fetchAds();
+            // Reset form
+            setPreviewImage(null);
+            setTitle('');
+            setDescription('');
+            setCtaText('');
+            setCtaLink('');
         } catch (error) {
             console.error('Error creating ad:', error);
         }
     };
 
-    const deleteAd = async (id: string) => {
+    const deleteAd = (id: string) => {
         try {
-            const response = await fetch(`/api/ads/${id}`, {
-                method: 'DELETE'
-            });
-            if (response.ok) fetchAds();
+            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
+            const updatedAds = currentAds.filter((ad: Ad) => ad.id !== id);
+            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
+            fetchAds();
         } catch (error) {
             console.error('Error deleting ad:', error);
         }
     };
 
-    const toggleAdStatus = async (id: string, currentStatus: boolean) => {
+    const toggleAdStatus = (id: string, currentStatus: boolean) => {
         try {
-            const response = await fetch(`/api/ads/${id}`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ isActive: !currentStatus })
-            });
-            if (response.ok) fetchAds();
+            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
+            const updatedAds = currentAds.map((ad: Ad) =>
+                ad.id === id ? { ...ad, isActive: !currentStatus } : ad
+            );
+            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
+            fetchAds();
         } catch (error) {
             console.error('Error toggling ad status:', error);
         }

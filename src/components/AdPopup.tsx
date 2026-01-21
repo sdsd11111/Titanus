@@ -18,11 +18,11 @@ export const AdPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const fetchAds = async () => {
+        const fetchAds = () => {
             try {
-                const response = await fetch('/api/ads');
-                if (response.ok) {
-                    const ads: Ad[] = await response.json();
+                const storedAds = localStorage.getItem('titanus_ads');
+                if (storedAds) {
+                    const ads: Ad[] = JSON.parse(storedAds);
                     // Get the most recent ACTIVE ad
                     const currentAd = ads.filter(a => a.isActive).sort((a, b) => b.createdAt - a.createdAt)[0];
 
