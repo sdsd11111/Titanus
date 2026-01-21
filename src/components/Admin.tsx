@@ -257,6 +257,9 @@ export const Admin = () => {
                                         placeholder="Ej. https://wa.me/..."
                                         className="w-full bg-black/50 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-titanus-yellow outline-none"
                                     />
+                                    <p className="text-[10px] text-gray-500 mt-1 ml-1 leading-tight">
+                                        Pro-tip: Usa <span className="text-titanus-yellow font-bold">#formulario</span> para abrir el registro aquí mismo.
+                                    </p>
                                 </div>
                             </div>
 
