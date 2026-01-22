@@ -148,8 +148,7 @@ export const About = () => {
                             Consolidados como el referente indiscutible del acondicionamiento físico en Loja. Con nuestras sedes estratégicas en el <span className="text-white font-black italic">Centro y Sur</span> de la ciudad, ofrecemos una experiencia de entrenamiento de élite para el guerrero moderno.
                         </motion.p>
 
-                        {/* Stats Cards */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div className="grid grid-cols-3 gap-2 md:grid-cols-3 md:gap-4 pt-4">
                             {stats.map((stat, index) => (
                                 <motion.div
                                     key={index}
@@ -158,20 +157,20 @@ export const About = () => {
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 + 0.4 }}
                                     whileHover={{ y: -5, scale: 1.02 }}
-                                    className="bg-black/40 border border-white/5 p-5 rounded-2xl group hover:border-titanus-yellow/50 transition-all shadow-xl"
+                                    className="bg-black/40 border border-white/5 p-3 md:p-5 rounded-2xl group hover:border-titanus-yellow/50 transition-all shadow-xl flex flex-col items-center sm:items-start text-center sm:text-left"
                                 >
                                     <div className="mb-4 text-titanus-yellow group-hover:scale-110 transition-transform">
                                         {stat.icon}
                                     </div>
                                     <div className="space-y-1">
-                                        <p className="text-3xl font-display font-black text-white italic tracking-tight">
+                                        <p className="text-xl md:text-3xl font-display font-black text-white italic tracking-tight">
                                             {'prefix' in stat && stat.prefix}
                                             <CountUp value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
                                         </p>
-                                        <p className="text-[10px] font-black text-titanus-yellow uppercase tracking-[0.2em]">
+                                        <p className="text-[8px] md:text-[10px] font-black text-titanus-yellow uppercase tracking-[0.1em] md:tracking-[0.2em]">
                                             {stat.label}
                                         </p>
-                                        <p className="text-[10px] text-gray-500 font-bold uppercase">
+                                        <p className="hidden md:block text-[10px] text-gray-500 font-bold uppercase">
                                             {stat.subtext}
                                         </p>
                                     </div>

@@ -43,12 +43,17 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
         setFormState('submitting');
 
         try {
+            // Convert DD/MM/YYYY to YYYY-MM-DD for database
+            const [day, month, year] = formData.dob.split('/');
+            const formattedDate = `${year}-${month}-${day}`;
+            const payload = { ...formData, dob: formattedDate };
+
             const response = await fetch('/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(payload),
             });
 
             if (response.ok) {
@@ -75,9 +80,24 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
             case 1: return !!formData.location;
             case 2: {
                 const nameParts = formData.name.trim().split(/\s+/);
-                const dobDate = new Date(formData.dob);
+
+                // Parse DD/MM/YYYY
+                const [day, month, year] = formData.dob.split('/').map(Number);
+                if (!day || !month || !year) return false;
+
+                const dobDate = new Date(year, month - 1, day);
                 const today = new Date();
-                const age = today.getFullYear() - dobDate.getFullYear();
+
+                // Validate date is real and age is reasonable
+                const isValidDate = dobDate.getDate() === day && dobDate.getMonth() === month - 1 && dobDate.getFullYear() === year;
+                if (!isValidDate) return false;
+
+                let age = today.getFullYear() - dobDate.getFullYear();
+                const m = today.getMonth() - dobDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) {
+                    age--;
+                }
+
                 return nameParts.length >= 2 && age >= 12 && age < 90;
             }
             case 3: return !!formData.whatsapp && /^(\+593|09)\d{8}$/.test(formData.whatsapp);
@@ -110,6 +130,20 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                 });
             }
         }
+    };
+
+    const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let val = e.target.value.replace(/\D/g, '');
+        if (val.length > 8) val = val.slice(0, 8);
+
+        let formatted = val;
+        if (val.length > 2) {
+            formatted = val.slice(0, 2) + '/' + val.slice(2);
+        }
+        if (val.length > 4) {
+            formatted = formatted.slice(0, 5) + '/' + formatted.slice(5);
+        }
+        setFormData({ ...formData, dob: formatted });
     };
 
     return (
@@ -174,15 +208,23 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                                     <div className="space-y-1">
                                         <label className="text-xs font-bold text-gray-500 uppercase ml-1">Nombre Completo (Apellido y Nombre)</label>
                                         <div className="relative">
-                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                                            <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" placeholder="Ej. Juan Pérez" />
+                                            <User className="absolute left-4 top-1/2 -translate-y-1/2 text-titanus-yellow/50" size={18} />
+                                            <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" placeholder="Ej. Juan Pérez" />
                                         </div>
                                     </div>
                                     <div className="space-y-1">
                                         <label className="text-xs font-bold text-gray-500 uppercase ml-1">Fecha de Nacimiento (Edad válida)</label>
                                         <div className="relative">
-                                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                                            <input type="date" value={formData.dob} onChange={(e) => setFormData({ ...formData, dob: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" />
+                                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-titanus-yellow/50" size={18} />
+                                            <input
+                                                type="text"
+                                                inputMode="numeric"
+                                                value={formData.dob}
+                                                onChange={handleDateChange}
+                                                placeholder="dd/mm/aaaa"
+                                                maxLength={10}
+                                                className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none"
+                                            />
                                         </div>
                                     </div>
                                 </motion.div>
@@ -193,8 +235,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                                     <div className="space-y-1">
                                         <label className="text-xs font-bold text-gray-500 uppercase ml-1">WhatsApp</label>
                                         <div className="relative">
-                                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                                            <input type="tel" value={formData.whatsapp} onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value.replace(/[^0-9+]/g, '') })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" placeholder="09XXXXXXXX" />
+                                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-titanus-yellow/50" size={18} />
+                                            <input type="tel" value={formData.whatsapp} onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value.replace(/[^0-9+]/g, '') })} className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" placeholder="09XXXXXXXX" />
                                         </div>
                                         <p className="text-[10px] text-gray-500 ml-1">Debe ser un número válido de Ecuador.</p>
                                     </div>
@@ -204,7 +246,7 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                             {currentStep === 4 && (
                                 <motion.div key="step4" variants={stepVariants} initial="hidden" animate="visible" exit="exit" className="grid grid-cols-2 gap-3">
                                     {['Bailoterapia', 'Gimnasio', 'Calistenia', 'MMA'].map((item) => (
-                                        <label key={item} className={`flex flex-col items-center justify-center p-4 rounded-xl border cursor-pointer transition-all aspect-square ${formData.interest === item ? 'bg-titanus-yellow text-black border-titanus-yellow' : 'bg-black/30 border-white/10 text-gray-400 hover:border-white/30'}`}>
+                                        <label key={item} className={`flex flex-col items-center justify-center p-4 rounded-xl border cursor-pointer transition-all aspect-square ${formData.interest === item ? 'bg-titanus-yellow text-black border-titanus-yellow shadow-[0_0_15px_rgba(255,215,0,0.3)]' : 'bg-black/30 border-titanus-yellow/20 text-gray-400 hover:border-titanus-yellow/50'}`}>
                                             <input type="radio" name="interest" value={item} checked={formData.interest === item} onChange={(e) => setFormData({ ...formData, interest: e.target.value })} className="hidden" />
                                             <Activity size={24} className="mb-2" />
                                             <span className="font-bold uppercase text-[10px] tracking-wide text-center">{item}</span>
@@ -218,8 +260,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                                     <div className="space-y-1">
                                         <label className="text-xs font-bold text-gray-500 uppercase ml-1">Horario Preferido</label>
                                         <div className="relative">
-                                            <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
-                                            <select value={formData.schedule} onChange={(e) => setFormData({ ...formData, schedule: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none appearance-none">
+                                            <Clock className="absolute left-4 top-1/2 -translate-y-1/2 text-titanus-yellow/50" size={18} />
+                                            <select value={formData.schedule} onChange={(e) => setFormData({ ...formData, schedule: e.target.value })} className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none appearance-none">
                                                 <option value="">Selecciona...</option>
                                                 <option value="Mañana">Mañana</option>
                                                 <option value="Tarde">Tarde</option>
@@ -230,8 +272,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                                     <div className="space-y-1">
                                         <label className="text-xs font-bold text-gray-500 uppercase ml-1">Sugerencias (Opcional)</label>
                                         <div className="relative">
-                                            <MessageSquare className="absolute left-4 top-4 text-gray-500" size={18} />
-                                            <textarea value={formData.suggestions} onChange={(e) => setFormData({ ...formData, suggestions: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 h-24 text-white focus:border-titanus-yellow outline-none resize-none" placeholder="¿Algo más que debamos saber?" />
+                                            <MessageSquare className="absolute left-4 top-4 text-titanus-yellow/50" size={18} />
+                                            <textarea value={formData.suggestions} onChange={(e) => setFormData({ ...formData, suggestions: e.target.value })} className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 h-24 text-white focus:border-titanus-yellow outline-none resize-none" placeholder="¿Algo más que debamos saber?" />
                                         </div>
                                     </div>
                                 </motion.div>

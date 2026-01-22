@@ -17,7 +17,7 @@ const ServiceCard = ({ title, description, icon, delay = 0, image }: ServiceCard
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay }}
             whileHover={{ y: -5, scale: 1.02 }}
-            className="relative group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:border-titanus-yellow/50 transition-all duration-300 aspect-square"
+            className="relative group bg-white/15 backdrop-blur-sm border border-white/20 hover:border-titanus-yellow/50 transition-all duration-300 aspect-square rounded-3xl overflow-hidden shadow-xl"
         >
             {/* Background Image Overlay */}
             {image && (
@@ -25,12 +25,12 @@ const ServiceCard = ({ title, description, icon, delay = 0, image }: ServiceCard
                     <img
                         src={image}
                         alt={title}
-                        className="w-full h-full object-cover opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700 grayscale brightness-50 will-change-transform"
+                        className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-700 will-change-transform"
                         loading="lazy"
                         width="610"
                         height="762"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-titanus-black via-titanus-black/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-titanus-black/80 via-transparent to-transparent" />
                 </div>
             )}
 
