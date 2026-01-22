@@ -110,7 +110,7 @@ export const Services = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-6xl font-display font-black text-white uppercase italic leading-none tracking-tighter"
+                        className="text-4xl md:text-6xl font-display font-black text-white uppercase italic leading-none tracking-tight"
                     >
                         Nuestros <span className="text-titanus-yellow">Servicios</span>
                     </motion.h2>

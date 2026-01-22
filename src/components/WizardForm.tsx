@@ -132,7 +132,7 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                     <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 text-green-500">
                         <Check size={40} strokeWidth={3} />
                     </div>
-                    <h3 className="text-2xl font-display font-black text-white uppercase italic mb-2">¡Solicitud Recibida!</h3>
+                    <h3 className="text-2xl font-display font-black text-white uppercase italic tracking-tight mb-2">¡Solicitud Recibida!</h3>
                     <p className="text-gray-400 text-sm mb-6">Estamos revisando tu perfil. Te contactaremos si ganas.</p>
                     {onClose && <button onClick={handleClose} className="text-sm font-bold text-titanus-yellow hover:underline">Cerrar</button>}
                 </div>
@@ -140,7 +140,7 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                 <div className="mt-4">
                     <div className="mb-8 text-center">
                         <span className="text-titanus-yellow font-bold text-xs uppercase tracking-widest">Paso {currentStep} de {totalSteps}</span>
-                        <h3 className="text-2xl font-display font-black text-white uppercase italic mt-1">
+                        <h3 className="text-2xl font-display font-black text-white uppercase italic tracking-tight mt-1">
                             {currentStep === 1 && "¿Dónde te gustaría entrenar?"}
                             {currentStep === 2 && "Cuéntanos sobre ti"}
                             {currentStep === 3 && "¿Cómo te contactamos?"}

@@ -130,7 +130,7 @@ export const About = () => {
                             <span className="text-titanus-yellow font-black tracking-[0.4em] text-xs uppercase block mb-3">
                                 Nuestra Identidad
                             </span>
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white leading-[1] uppercase italic tracking-tighter">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-white leading-[1.1] uppercase italic tracking-tight">
                                 Por qué somos el mejor
                                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
                                     gimnasio calificado de Loja.
@@ -164,7 +164,7 @@ export const About = () => {
                                         {stat.icon}
                                     </div>
                                     <div className="space-y-1">
-                                        <p className="text-3xl font-display font-black text-white italic tracking-tighter">
+                                        <p className="text-3xl font-display font-black text-white italic tracking-tight">
                                             {'prefix' in stat && stat.prefix}
                                             <CountUp value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
                                         </p>
@@ -181,7 +181,7 @@ export const About = () => {
 
                         {/* Subtle Brand Watermark */}
                         <div className="pt-8 opacity-10 select-none">
-                            <span className="text-5xl md:text-7xl font-display font-black text-white uppercase italic tracking-tighter">
+                            <span className="text-5xl md:text-7xl font-display font-black text-white uppercase italic tracking-tight">
                                 #YOSOYTITANUS
                             </span>
                         </div>

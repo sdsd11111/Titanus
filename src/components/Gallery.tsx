@@ -106,7 +106,7 @@ export const Gallery = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-4xl md:text-6xl font-display font-black text-white uppercase italic tracking-tighter"
+                        className="text-4xl md:text-6xl font-display font-black text-white uppercase italic tracking-tight"
                     >
                         GALERÍA DE <span className="text-titanus-yellow">ALTO RENDIMIENTO</span>
                     </motion.h2>
@@ -190,7 +190,7 @@ export const Gallery = () => {
 
                 {/* Brand Hashtag */}
                 <div className="mt-20 text-center opacity-5 select-none pointer-events-none">
-                    <span className="text-[10vw] font-display font-black text-white italic tracking-tighter">#YOSOYTITANUS</span>
+                    <span className="text-[10vw] font-display font-black text-white italic tracking-tight">#YOSOYTITANUS</span>
                 </div>
             </div>
 

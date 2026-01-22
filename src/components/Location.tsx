@@ -14,7 +14,7 @@ const LocationCard = () => {
                     <div className="p-3 bg-titanus-yellow rounded-2xl text-black">
                         <MapPin size={24} />
                     </div>
-                    <h2 className="text-2xl font-display font-black text-white uppercase italic tracking-tighter">
+                    <h2 className="text-2xl font-display font-black text-white uppercase italic tracking-tight">
                         Encuéntranos en <span className="text-titanus-yellow">Loja</span>
                     </h2>
                 </div>
@@ -23,13 +23,11 @@ const LocationCard = () => {
                     {/* Sede Centro */}
                     <div className="group cursor-default">
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-titanus-yellow" />
-                            <h3 className="text-sm font-black text-titanus-yellow uppercase tracking-widest">Sede Centro (Principal)</h3>
+                            <h3 className="text-sm font-black text-titanus-yellow uppercase tracking-widest">Sede Principal (Sucursal Centro)</h3>
                         </div>
                         <address className="not-italic text-gray-300 text-sm leading-relaxed mb-3">
-                            Av. Orillas del Zamora y Segundo Puertas,<br /> 110108, Loja, Ecuador.
-                        </address>
-                        <a
+                            Avenida Orillas del Zamora y Segundo Puertas,<br /> Código Postal 110108, Loja, Ecuador.
+                        </address>                        <a
                             href="https://maps.app.goo.gl/SDWVsCtBEJQsnWxZ7"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -45,24 +43,21 @@ const LocationCard = () => {
                     <div className="group cursor-default">
                         <div className="flex items-center gap-2 mb-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-gray-500" />
-                            <h3 className="text-sm font-black text-white uppercase tracking-widest">Sede Sur</h3>
+                            <h3 className="text-sm font-black text-white uppercase tracking-widest">Sucursal Sur</h3>
                         </div>
-                        <p className="text-gray-400 text-xs font-medium">Ubicación estratégica zona sur de la ciudad.</p>
-                    </div>
+                        <p className="text-gray-400 text-xs font-medium">Ubicada frente a la Universidad Nacional.</p>                    </div>
 
                     <div className="space-y-4 pt-4">
                         <div className="flex items-center gap-3 text-gray-300">
                             <Clock size={18} className="text-titanus-yellow" />
                             <div className="text-xs">
-                                <span className="font-bold text-white">Lun - Vie:</span> 06:00 AM - 10:00 PM <br />
-                                <span className="font-bold text-white">Sáb:</span> 08:00 AM - 12:30 PM
+                                <span className="font-bold text-white">Lun - Vie:</span> 05:00 AM - 10:00 PM <br />
+                                <span className="font-bold text-white">Sáb:</span> 08:00 AM - 05:00 PM
                             </div>
-                        </div>
-                        <div className="flex items-center gap-3 text-gray-300">
+                        </div>                        <div className="flex items-center gap-3 text-gray-300">
                             <Phone size={18} className="text-titanus-yellow" />
-                            <span className="text-xs font-bold">098 523 4389</span>
-                        </div>
-                    </div>
+                            <span className="text-xs font-bold">+593 98 523 4389</span>
+                        </div>                    </div>
 
                     <a
                         href="https://maps.app.goo.gl/SDWVsCtBEJQsnWxZ7"

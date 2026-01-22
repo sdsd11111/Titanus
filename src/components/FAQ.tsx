@@ -10,7 +10,7 @@ interface FAQItem {
 const faqData: FAQItem[] = [
     {
         question: "¿Cuáles son los horarios de atención en las sucursales Centro y Sur?",
-        answer: "Atendemos de Lunes a Viernes de 5:00 AM a 10:00 PM. Los Sábados de 8:00 AM a 17:00 PM. Nuestras dos sedes mantienen la misma calidad y disponibilidadhoraria."
+        answer: "Atendemos de Lunes a Viernes de 5:00 AM a 10:00 PM. Los Sábados de 8:00 AM a 17:00 PM. Nuestras dos sedes mantienen la misma calidad y disponibilidad horaria."
     },
     {
         question: "¿Qué incluyen las membresías de Titanus Fitness?",
@@ -22,7 +22,7 @@ const faqData: FAQItem[] = [
     },
     {
         question: "¿Dónde están ubicadas las sedes de Titanus Gym en Loja?",
-        answer: "Para tu comodidad, contamos con dos ubicaciones estratégicas: Sede Centro (Av. Universitaria y Rocafuerte) y Sede Sur (Av. de los Paltas). Ambas cuentan con la mejor tecnología y ambiente para tu entrenamiento."
+        answer: "Para tu comodidad, contamos con dos ubicaciones estratégicas: Sede Principal (Sucursal Centro) en la Av. Orillas del Zamora y Segundo Puertas, y nuestra Sucursal Sur frente a la Universidad Nacional. Ambas cuentan con la mejor tecnología y ambiente para tu entrenamiento."
     },
     {
         question: "¿Qué disciplinas se pueden practicar en el gimnasio?",
@@ -126,7 +126,7 @@ export const FAQ = () => {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-6xl font-display font-black text-titanus-yellow uppercase italic tracking-tighter mb-4"
+                            className="text-4xl md:text-6xl font-display font-black text-titanus-yellow uppercase italic tracking-tight mb-4"
                         >
                             PREGUNTAS <span className="text-white">FRECUENTES</span>
                         </motion.h2>

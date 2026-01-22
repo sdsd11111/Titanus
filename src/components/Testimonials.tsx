@@ -183,7 +183,7 @@ export const Testimonials = () => {
                     viewport={{ once: true }}
                     className="py-12 border-y border-white/5"
                 >
-                    <span className="text-4xl md:text-7xl font-display font-black text-white/10 uppercase italic tracking-tighter hover:text-titanus-yellow/20 transition-colors cursor-default select-none">
+                    <span className="text-4xl md:text-7xl font-display font-black text-white/10 uppercase italic tracking-tight hover:text-titanus-yellow/20 transition-colors cursor-default select-none">
                         #YOSOYTITANUS | #GUERREROMODERNO
                     </span>
                 </motion.div>

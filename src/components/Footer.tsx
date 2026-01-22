@@ -23,14 +23,13 @@ export const Footer = () => {
                             Forjando leyendas en Loja desde 2018. Únete a la comunidad más fuerte de la ciudad.
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://instagram.com/titanusgymloja" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Instagram de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
+                            <a href="https://www.instagram.com/titanusfitness/" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Instagram de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
                                 <Instagram size={20} />
                             </a>
-                            <a href="https://facebook.com/titanusgymloja" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Facebook de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
+                            <a href="https://www.facebook.com/TitanusFitness/?locale=es_LA" target="_blank" rel="noopener noreferrer" aria-label="Visitar el Facebook de Titanus Gym" className="w-10 h-10 bg-white/5 flex items-center justify-center rounded-full hover:bg-titanus-yellow hover:text-black transition-colors">
                                 <Facebook size={20} />
                             </a>
-                        </div>
-                    </div>
+                        </div>                    </div>
 
                     {/* Locations */}
                     <div className="space-y-6">
@@ -39,17 +38,15 @@ export const Footer = () => {
                             <div className="flex gap-3 text-gray-400 group cursor-pointer hover:text-white transition-colors">
                                 <MapPin className="text-titanus-yellow shrink-0" size={20} />
                                 <div>
-                                    <p className="font-bold text-white">Sede Centro</p>
-                                    <p className="text-sm">Av. Universitaria y Rocafuerte</p>
-                                </div>
-                            </div>
+                                    <p className="font-bold text-white">Sede Principal (Sucursal Centro)</p>
+                                    <p className="text-sm">Av. Orillas del Zamora y Segundo Puertas</p>
+                                </div>                            </div>
                             <div className="flex gap-3 text-gray-400 group cursor-pointer hover:text-white transition-colors">
                                 <MapPin className="text-titanus-yellow shrink-0" size={20} />
                                 <div>
-                                    <p className="font-bold text-white">Sede Sur</p>
-                                    <p className="text-sm">Av. de los Paltas</p>
-                                </div>
-                            </div>
+                                    <p className="font-bold text-white">Sucursal Sur</p>
+                                    <p className="text-sm">Frente a la Universidad Nacional</p>
+                                </div>                            </div>
                         </div>
                     </div>
 
@@ -66,8 +63,7 @@ export const Footer = () => {
                                 <div>
                                     <p className="font-bold text-white">Sábados</p>
                                     <p className="text-sm">08:00 AM - 05:00 PM</p>
-                                </div>
-                            </div>
+                                </div>                            </div>
                         </div>
                     </div>
 
@@ -77,10 +73,9 @@ export const Footer = () => {
                         <div className="flex gap-3 text-gray-400">
                             <Phone className="text-titanus-yellow shrink-0" size={20} />
                             <div className="space-y-1">
-                                <p className="text-sm">+593 99 123 4567</p>
+                                <p className="text-sm">+593 98 523 4389</p>
                                 <p className="text-sm">info@titanus.com</p>
-                            </div>
-                        </div>
+                            </div>                        </div>
                         <button className="w-full mt-4 py-3 bg-white/5 border border-white/10 text-white font-bold hover:bg-titanus-yellow hover:text-black hover:border-titanus-yellow transition-all uppercase text-sm tracking-widest">
                             Contáctanos
                         </button>

@@ -11,6 +11,19 @@
   }
 
   body {
-    @apply bg-titanus-black text-white font-sans overflow-x-hidden;
+    @apply bg-titanus-black text-white font-sans overflow-x-hidden leading-relaxed;
+  }
+
+  .font-display {
+    @apply tracking-tight md:tracking-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply leading-tight;
   }
 }
