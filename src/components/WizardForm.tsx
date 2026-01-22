@@ -60,7 +60,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                 setFormState('success');
                 triggerConfetti();
             } else {
-                alert('Hubo un error al enviar tus datos. Por favor intenta de nuevo.');
+                const data = await response.json();
+                alert(data.message || 'Hubo un error al enviar tus datos. Por favor intenta de nuevo.');
                 setFormState('idle'); // Allow retry
             }
         } catch (error) {
