@@ -162,6 +162,7 @@ export const Admin = () => {
                                 type="text"
                                 value={username}
                                 onChange={e => setUsername(e.target.value)}
+                                autoComplete="username"
                                 className="w-full bg-black/50 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-titanus-yellow outline-none"
                             />
                         </div>
@@ -171,6 +172,7 @@ export const Admin = () => {
                                 type="password"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
+                                autoComplete="current-password"
                                 className="w-full bg-black/50 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-titanus-yellow outline-none"
                             />
                         </div>
