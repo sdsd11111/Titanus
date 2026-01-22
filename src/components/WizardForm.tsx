@@ -73,7 +73,13 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
     const isStepValid = () => {
         switch (currentStep) {
             case 1: return !!formData.location;
-            case 2: return !!formData.name && !!formData.dob;
+            case 2: {
+                const nameParts = formData.name.trim().split(/\s+/);
+                const dobDate = new Date(formData.dob);
+                const today = new Date();
+                const age = today.getFullYear() - dobDate.getFullYear();
+                return nameParts.length >= 2 && age >= 12 && age < 90;
+            }
             case 3: return !!formData.whatsapp && /^(\+593|09)\d{8}$/.test(formData.whatsapp);
             case 4: return !!formData.interest;
             case 5: return !!formData.schedule;
@@ -141,7 +147,7 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                     <div className="mb-8 text-center">
                         <span className="text-titanus-yellow font-bold text-xs uppercase tracking-widest">Paso {currentStep} de {totalSteps}</span>
                         <h3 className="text-2xl font-display font-black text-white uppercase italic tracking-tight mt-1">
-                            {currentStep === 1 && "¿Dónde te gustaría entrenar?"}
+                            {currentStep === 1 && "¿En qué sucursal entrenas?"}
                             {currentStep === 2 && "Cuéntanos sobre ti"}
                             {currentStep === 3 && "¿Cómo te contactamos?"}
                             {currentStep === 4 && "¿Qué te apasiona más?"}
@@ -166,14 +172,14 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                             {currentStep === 2 && (
                                 <motion.div key="step2" variants={stepVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4">
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-gray-500 uppercase ml-1">Tu Nombre</label>
+                                        <label className="text-xs font-bold text-gray-500 uppercase ml-1">Nombre Completo (Apellido y Nombre)</label>
                                         <div className="relative">
                                             <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                             <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" placeholder="Ej. Juan Pérez" />
                                         </div>
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="text-xs font-bold text-gray-500 uppercase ml-1">Fecha de Nacimiento</label>
+                                        <label className="text-xs font-bold text-gray-500 uppercase ml-1">Fecha de Nacimiento (Edad válida)</label>
                                         <div className="relative">
                                             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                                             <input type="date" value={formData.dob} onChange={(e) => setFormData({ ...formData, dob: e.target.value })} className="w-full bg-black/50 border border-white/10 rounded-xl py-3 pl-12 text-white focus:border-titanus-yellow outline-none" />
