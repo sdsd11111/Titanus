@@ -34,11 +34,12 @@ export const Admin = () => {
         fetchAds();
     }, []);
 
-    const fetchAds = () => {
+    const fetchAds = async () => {
         try {
-            const storedAds = localStorage.getItem('titanus_ads');
-            if (storedAds) {
-                setAds(JSON.parse(storedAds));
+            const response = await fetch('/api/ads');
+            if (response.ok) {
+                const data = await response.json();
+                setAds(data);
             }
         } catch (error) {
             console.error('Error fetching ads:', error);
@@ -72,10 +73,10 @@ export const Admin = () => {
         }
     };
 
-    const createAd = () => {
+    const createAd = async () => {
         if (!previewImage || !title || !description) return;
 
-        const newAd: Ad = {
+        const newAd = {
             id: crypto.randomUUID(),
             image: previewImage,
             title,
@@ -87,43 +88,65 @@ export const Admin = () => {
         };
 
         try {
-            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
-            const updatedAds = [newAd, ...currentAds];
-            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
+            const response = await fetch('/api/ads', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newAd)
+            });
 
-            fetchAds();
-            // Reset form
-            setPreviewImage(null);
-            setTitle('');
-            setDescription('');
-            setCtaText('');
-            setCtaLink('');
+            if (response.ok) {
+                fetchAds();
+                // Reset form
+                setPreviewImage(null);
+                setTitle('');
+                setDescription('');
+                setCtaText('');
+                setCtaLink('');
+            } else {
+                const errorData = await response.json();
+                alert(`Error: ${errorData.message}`);
+            }
         } catch (error) {
             console.error('Error creating ad:', error);
+            alert('Error de conexión al servidor');
         }
     };
 
-    const deleteAd = (id: string) => {
+    const deleteAd = async (id: string) => {
+        if (!confirm('¿Estás seguro de eliminar este anuncio?')) return;
+
         try {
-            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
-            const updatedAds = currentAds.filter((ad: Ad) => ad.id !== id);
-            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
-            fetchAds();
+            const response = await fetch(`/api/ads/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                fetchAds();
+            } else {
+                alert('No se pudo eliminar el anuncio');
+            }
         } catch (error) {
             console.error('Error deleting ad:', error);
+            alert('Error de conexión');
         }
     };
 
-    const toggleAdStatus = (id: string, currentStatus: boolean) => {
+    const toggleAdStatus = async (id: string, currentStatus: boolean) => {
         try {
-            const currentAds = JSON.parse(localStorage.getItem('titanus_ads') || '[]');
-            const updatedAds = currentAds.map((ad: Ad) =>
-                ad.id === id ? { ...ad, isActive: !currentStatus } : ad
-            );
-            localStorage.setItem('titanus_ads', JSON.stringify(updatedAds));
-            fetchAds();
+            const response = await fetch(`/api/ads/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ isActive: !currentStatus })
+            });
+
+            if (response.ok) {
+                fetchAds();
+            } else {
+                alert('No se pudo actualizar el estado');
+            }
         } catch (error) {
             console.error('Error toggling ad status:', error);
+            alert('Error de conexión');
         }
     };
 
