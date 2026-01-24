@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Maximize2, Camera } from 'lucide-react';
 
@@ -75,12 +75,81 @@ const galleryData: GalleryItem[] = [
         title: 'Entrenamiento en Pareja',
         description: 'Fomentando el apoyo mutuo y el crecimiento conjunto en Loja.',
         size: 'medium'
+    },
+    {
+        id: 9,
+        category: 'Instalaciones',
+        image: '/images/gallery-new-1.webp',
+        title: 'Zona de Potencia',
+        description: 'Espacio dedicado al levantamiento pesado.',
+        size: 'large'
+    },
+    {
+        id: 10,
+        category: 'Maquinaria',
+        image: '/images/gallery-new-2.webp',
+        title: 'Biomecánica Avanzada',
+        description: 'Equipos diseñados para el movimiento natural.',
+        size: 'medium'
+    },
+    {
+        id: 11,
+        category: 'Entrenamiento',
+        image: '/images/gallery-new-3.webp',
+        title: 'Peso Libre Pro',
+        description: 'Mancuernas y barras para todos los niveles.',
+        size: 'medium'
+    },
+    {
+        id: 12,
+        category: 'Entrenamiento',
+        image: '/images/gallery-new-4.webp',
+        title: 'Área Funcional',
+        description: 'Libertad de movimiento y control corporal.',
+        size: 'small'
+    },
+    {
+        id: 13,
+        category: 'Maquinaria',
+        image: '/images/gallery-new-5.webp',
+        title: 'Innovación Fitness',
+        description: 'Tecnología al servicio de tu entrenamiento.',
+        size: 'large'
+    },
+    {
+        id: 14,
+        category: 'Comunidad',
+        image: '/images/gallery-new-6.webp',
+        title: 'Grupo de Entrenamiento',
+        description: 'Superando metas juntos cada día.',
+        size: 'small'
+    },
+    {
+        id: 15,
+        category: 'Instalaciones',
+        image: '/images/gallery-new-7.webp',
+        title: 'Espacios Amplios',
+        description: 'Comodidad y ventilación para tu rutina.',
+        size: 'medium'
+    },
+    {
+        id: 16,
+        category: 'Comunidad',
+        image: '/images/gallery-new-8.webp',
+        title: 'Compañeros de Gym',
+        description: 'Motivación compartida para mejores resultados.',
+        size: 'medium'
     }
 ];
 
 export const Gallery = () => {
     const [filter, setFilter] = useState<'All' | GalleryItem['category']>('All');
     const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+    const [visibleCount, setVisibleCount] = useState(8);
+
+    useEffect(() => {
+        setVisibleCount(8);
+    }, [filter]);
 
     const categories = ['All', 'Instalaciones', 'Entrenamiento', 'Maquinaria', 'Comunidad'];
 
@@ -134,7 +203,7 @@ export const Gallery = () => {
                     className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6"
                 >
                     <AnimatePresence>
-                        {filteredData.map((item) => (
+                        {filteredData.slice(0, visibleCount).map((item) => (
                             <motion.div
                                 key={item.id}
                                 layout
@@ -187,6 +256,19 @@ export const Gallery = () => {
                         ))}
                     </AnimatePresence>
                 </motion.div>
+
+                {/* Load More Button */}
+                {visibleCount < filteredData.length && (
+                    <div className="mt-12 text-center">
+                        <button
+                            onClick={() => setVisibleCount((prev) => prev + 4)}
+                            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-titanus-yellow/30 hover:border-titanus-yellow text-titanus-yellow font-bold uppercase tracking-widest transition-all duration-300 hover:bg-titanus-yellow/10"
+                        >
+                            <span>Ver más</span>
+                            <div className="w-2 h-2 bg-titanus-yellow rounded-full group-hover:scale-150 transition-transform" />
+                        </button>
+                    </div>
+                )}
 
                 {/* Brand Hashtag */}
                 <div className="mt-20 text-center opacity-5 select-none pointer-events-none">

@@ -13,6 +13,8 @@ import { WhatsAppButton } from './components/WhatsAppButton';
 import { Admin } from './components/Admin';
 import { AdPopup } from './components/AdPopup';
 import { Preloader } from './components/Preloader';
+import { TermsAndConditions } from './components/TermsAndConditions';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
 
 const LandingPage = () => (
   <>
@@ -40,6 +42,8 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin" element={<><Preloader /><Admin /></>} />
+        <Route path="/terminos" element={<><Preloader /><TermsAndConditions /></>} />
+        <Route path="/politicas" element={<><Preloader /><PrivacyPolicy /></>} />
       </Routes>
     </div >
   );

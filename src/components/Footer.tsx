@@ -1,4 +1,5 @@
 import { Facebook, Instagram, MapPin, Clock, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     return (
@@ -45,7 +46,7 @@ export const Footer = () => {
                                 <MapPin className="text-titanus-yellow shrink-0" size={20} />
                                 <div>
                                     <p className="font-bold text-white">Sucursal Sur</p>
-                                    <p className="text-sm">Frente a la Universidad Nacional</p>
+                                    <p className="text-sm">Av. Pío Jaramillo y Reinaldo Espinoza (Redondel UNL)</p>
                                 </div>                            </div>
                         </div>
                     </div>
@@ -57,8 +58,12 @@ export const Footer = () => {
                             <Clock className="text-titanus-yellow shrink-0" size={20} />
                             <div className="space-y-2">
                                 <div>
-                                    <p className="font-bold text-white">Lunes - Viernes</p>
+                                    <p className="font-bold text-white">Centro (Lun - Vie)</p>
                                     <p className="text-sm">05:00 AM - 10:00 PM</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">Sur (Lun - Vie)</p>
+                                    <p className="text-sm">05:00 AM - 11:00 PM</p>
                                 </div>
                                 <div>
                                     <p className="font-bold text-white">Sábados</p>
@@ -74,7 +79,7 @@ export const Footer = () => {
                             <Phone className="text-titanus-yellow shrink-0" size={20} />
                             <div className="space-y-1">
                                 <p className="text-sm">+593 98 523 4389</p>
-                                <p className="text-sm">info@titanus.com</p>
+                                <p className="text-sm">titanusfitness@gmail.com</p>
                             </div>                        </div>
                         <button className="w-full mt-4 py-3 bg-white/5 border border-white/10 text-white font-bold hover:bg-titanus-yellow hover:text-black hover:border-titanus-yellow transition-all uppercase text-sm tracking-widest">
                             Contáctanos
@@ -84,11 +89,8 @@ export const Footer = () => {
 
                 <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-8 text-xs text-gray-500">
                     <div className="flex flex-wrap justify-center md:justify-start gap-6 uppercase tracking-widest font-bold">
-                        <a href="#about" className="hover:text-titanus-yellow">Nosotros</a>
-                        <a href="#services" className="hover:text-titanus-yellow">Servicios</a>
-                        <a href="#gallery" className="hover:text-titanus-yellow">Galería</a>
-                        <a href="#location" className="hover:text-titanus-yellow">Ubicación</a>
-                        <a href="#faq" className="hover:text-titanus-yellow">FAQ</a>
+                        <Link to="/terminos" className="hover:text-titanus-yellow transition-colors">Términos y Condiciones</Link>
+                        <Link to="/politicas" className="hover:text-titanus-yellow transition-colors">Privacidad</Link>
                     </div>
                     <div className="text-center md:text-right">
                         <p className="mb-2 text-gray-500">Diseñado por <a href="https://cesarreyesjaramillo.com/" target="_blank" rel="noopener noreferrer" className="hover:text-titanus-yellow underline transition-colors">Cesar Reyes</a> | Titanus Gym 2026</p>

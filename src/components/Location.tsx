@@ -45,14 +45,24 @@ const LocationCard = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-gray-500" />
                             <h3 className="text-sm font-black text-white uppercase tracking-widest">Sucursal Sur</h3>
                         </div>
-                        <p className="text-gray-400 text-xs font-medium">Ubicada frente a la Universidad Nacional.</p>                    </div>
+                        <p className="text-gray-400 text-xs font-medium">Av. Pío Jaramillo y Reinaldo Espinoza<br />(Redondel de la UNL)</p>                    </div>
 
                     <div className="space-y-4 pt-4">
                         <div className="flex items-center gap-3 text-gray-300">
                             <Clock size={18} className="text-titanus-yellow" />
-                            <div className="text-xs">
-                                <span className="font-bold text-white">Lun - Vie:</span> 05:00 AM - 10:00 PM <br />
-                                <span className="font-bold text-white">Sáb:</span> 08:00 AM - 05:00 PM
+                            <div className="text-xs space-y-2">
+                                <div>
+                                    <span className="font-bold text-titanus-yellow block mb-1">CENTRO (LUN-VIE)</span>
+                                    <span className="text-white">05:00 AM - 10:00 PM</span>
+                                </div>
+                                <div>
+                                    <span className="font-bold text-titanus-yellow block mb-1">SUR (LUN-VIE)</span>
+                                    <span className="text-white">05:00 AM - 11:00 PM</span>
+                                </div>
+                                <div>
+                                    <span className="font-bold text-white block">SÁBADOS (AMBAS)</span>
+                                    <span>08:00 AM - 05:00 PM</span>
+                                </div>
                             </div>
                         </div>                        <div className="flex items-center gap-3 text-gray-300">
                             <Phone size={18} className="text-titanus-yellow" />

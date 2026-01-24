@@ -20,7 +20,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
         whatsapp: '',
         interest: '',
         schedule: '',
-        suggestions: ''
+        suggestions: '',
+        acceptedTerms: false
     });
 
     const triggerConfetti = () => {
@@ -103,7 +104,7 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
             }
             case 3: return !!formData.whatsapp && /^(\+593|09)\d{8}$/.test(formData.whatsapp);
             case 4: return !!formData.interest;
-            case 5: return !!formData.schedule;
+            case 5: return !!formData.schedule && formData.acceptedTerms;
             default: return false;
         }
     };
@@ -127,7 +128,8 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                     whatsapp: '',
                     interest: '',
                     schedule: '',
-                    suggestions: ''
+                    suggestions: '',
+                    acceptedTerms: false
                 });
             }
         }
@@ -276,6 +278,23 @@ export const WizardForm = ({ onClose, isStandalone = false }: WizardFormProps) =
                                             <MessageSquare className="absolute left-4 top-4 text-titanus-yellow/50" size={18} />
                                             <textarea value={formData.suggestions} onChange={(e) => setFormData({ ...formData, suggestions: e.target.value })} className="w-full bg-black/50 border border-titanus-yellow/30 rounded-xl py-3 pl-12 h-24 text-white focus:border-titanus-yellow outline-none resize-none" placeholder="¿Algo más que debamos saber?" />
                                         </div>
+                                    </div>
+
+                                    <div className="pt-2">
+                                        <label className="flex items-start gap-3 cursor-pointer group">
+                                            <div className="relative flex items-center pt-1">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={formData.acceptedTerms}
+                                                    onChange={(e) => setFormData({ ...formData, acceptedTerms: e.target.checked })}
+                                                    className="peer h-5 w-5 cursor-pointer appearance-none rounded-md border border-titanus-yellow/50 bg-black/50 checked:bg-titanus-yellow transition-all"
+                                                />
+                                                <Check size={14} className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[calc(50%-2px)] text-black opacity-0 peer-checked:opacity-100 transition-opacity" strokeWidth={4} />
+                                            </div>
+                                            <span className="text-xs text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
+                                                Autorizo el tratamiento de mis datos personales conforme a la <a href="/politicas" target="_blank" rel="noopener noreferrer" className="text-titanus-yellow hover:underline font-bold z-10 relative" onClick={(e) => e.stopPropagation()}>Política de Privacidad y Protección de Datos Personales</a>.
+                                            </span>
+                                        </label>
                                     </div>
                                 </motion.div>
                             )}
