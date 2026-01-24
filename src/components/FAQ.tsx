@@ -10,7 +10,7 @@ interface FAQItem {
 const faqData: FAQItem[] = [
     {
         question: "¿Cuáles son los horarios de atención en las sucursales Centro y Sur?",
-        answer: "Atendemos de Lunes a Viernes de 5:00 AM a 10:00 PM. Los Sábados de 8:00 AM a 17:00 PM. Nuestras dos sedes mantienen la misma calidad y disponibilidad horaria."
+        answer: "Atendemos de Lunes a Viernes de 05:00 AM a 10:00 PM en Sede Centro y hasta las 11:00 PM en Sede Sur. Los Sábados atendemos en ambas sedes de 08:00 AM a 05:00 PM."
     },
     {
         question: "¿Qué incluyen las membresías de Titanus Fitness?",
@@ -22,7 +22,7 @@ const faqData: FAQItem[] = [
     },
     {
         question: "¿Dónde están ubicadas las sedes de Titanus Gym en Loja?",
-        answer: "Para tu comodidad, contamos con dos ubicaciones estratégicas: Sede Principal (Sucursal Centro) en la Av. Orillas del Zamora y Segundo Puertas, y nuestra Sucursal Sur frente a la Universidad Nacional. Ambas cuentan con la mejor tecnología y ambiente para tu entrenamiento."
+        answer: "Para tu comodidad, contamos con dos ubicaciones estratégicas: Sede Principal (Sucursal Centro) en la Av. Orillas del Zamora y Segundo Puertas, y nuestra Sucursal Sur en la Av. Pío Jaramillo y Reinaldo Espinoza (Redondel de la UNL). Ambas cuentan con la mejor tecnología y ambiente para tu entrenamiento."
     },
     {
         question: "¿Qué disciplinas se pueden practicar en el gimnasio?",
