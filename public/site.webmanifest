@@ -9,8 +9,9 @@
         },
         {
             "src": "/images/logo.webp",
-            "sizes": "512x512",
-            "type": "image/webp"
+            "sizes": "48x48 96x96 144x144 192x192 512x512",
+            "type": "image/webp",
+            "purpose": "any maskable"
         }
     ],
     "theme_color": "#FFD700",
