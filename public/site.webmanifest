@@ -8,9 +8,9 @@
             "type": "image/x-icon"
         },
         {
-            "src": "/images/logo.webp",
-            "sizes": "48x48 96x96 144x144 192x192 512x512",
-            "type": "image/webp",
+            "src": "/logo-compliant.png",
+            "sizes": "48x48 96x96 144x144 192x192 512x512 1056x1056",
+            "type": "image/png",
             "purpose": "any maskable"
         }
     ],
