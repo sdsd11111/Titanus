@@ -73,6 +73,36 @@ app.delete('/api/ads/:id', async (req, res) => {
     }
 });
 
+// Settings Management Endpoints
+app.get('/api/settings', async (req, res) => {
+    try {
+        const [rows] = await db.execute('SELECT `key`, `value` FROM settings');
+        // Convert array of objects to a single object with key-value pairs
+        const settings = rows.reduce((acc, row) => ({ ...acc, [row.key]: row.value }), {});
+        res.json(settings);
+    } catch (error) {
+        console.error('Error fetching settings:', error);
+        res.status(500).json({ message: 'Error fetching settings', error: error.message });
+    }
+});
+
+app.post('/api/settings', async (req, res) => {
+    try {
+        const { key, value } = req.body;
+        if (!key || value === undefined) {
+            return res.status(400).json({ message: 'Key and value are required' });
+        }
+        await db.execute(
+            'INSERT INTO settings (`key`, `value`) VALUES (?, ?) ON DUPLICATE KEY UPDATE `value` = ?',
+            [key, value, value]
+        );
+        res.json({ message: 'Setting updated successfully' });
+    } catch (error) {
+        console.error('Error updating setting:', error);
+        res.status(500).json({ message: 'Error updating setting', error: error.message });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

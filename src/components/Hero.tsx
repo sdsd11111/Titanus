@@ -5,6 +5,7 @@ import { WizardForm } from './WizardForm';
 
 export const Hero = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [buttonText, setButtonText] = useState('¡Participa por un mes gratis!');
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
@@ -13,6 +14,25 @@ export const Hero = () => {
     useEffect(() => {
         const handleCustomOpen = () => setIsModalOpen(true);
         document.addEventListener('open-wizard-modal', handleCustomOpen);
+
+        // Fetch dynamic button text
+        const fetchButtonText = async () => {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.hero_button_text && data.hero_button_text.trim() !== '') {
+                        setButtonText(data.hero_button_text);
+                    } else {
+                        setButtonText('¡Participa por un mes gratis!');
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching hero button text:', error);
+            }
+        };
+
+        fetchButtonText();
 
         // Check for URL param ?participar=true or hash #formulario/#participar
         const checkUrlParams = () => {
@@ -158,10 +178,10 @@ export const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={handleOpenModal}
+                     onClick={handleOpenModal}
                     className="group relative bg-titanus-yellow text-black font-black text-lg md:text-2xl px-8 md:px-14 py-4 md:py-6 rounded-full uppercase tracking-[0.15em] shadow-[0_0_50px_rgba(255,215,0,0.3)] hover:shadow-[0_0_70px_rgba(255,215,0,0.5)] transition-all duration-500 flex items-center gap-4 overflow-hidden mt-8 md:mt-12"
                 >
-                    <span className="relative z-10 text-sm md:text-2xl font-black">¡Participa por un mes gratis!</span>
+                    <span className="relative z-10 text-sm md:text-2xl font-black">{buttonText}</span>
                     <MousePointerClick className="relative z-10 w-5 h-5 md:w-6 md:h-6 group-hover:scale-125 transition-transform duration-300" />
 
                     {/* Inner Glow/Shine Effect */}

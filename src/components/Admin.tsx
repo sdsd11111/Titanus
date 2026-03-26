@@ -27,12 +27,30 @@ export const Admin = () => {
     const [ctaText, setCtaText] = useState('');
     const [ctaLink, setCtaLink] = useState('');
 
+    const [heroButtonText, setHeroButtonText] = useState('');
+    const [isSavingSettings, setIsSavingSettings] = useState(false);
+
     useEffect(() => {
         const auth = localStorage.getItem('titanus_admin_auth');
         if (auth === 'true') setIsAuthenticated(true);
 
         fetchAds();
+        fetchSettings();
     }, []);
+
+    const fetchSettings = async () => {
+        try {
+            const response = await fetch('/api/settings');
+            if (response.ok) {
+                const data = await response.json();
+                if (data.hero_button_text) {
+                    setHeroButtonText(data.hero_button_text);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching settings:', error);
+        }
+    };
 
     const fetchAds = async () => {
         try {
@@ -150,6 +168,28 @@ export const Admin = () => {
         }
     };
 
+    const updateSetting = async (key: string, value: string) => {
+        setIsSavingSettings(true);
+        try {
+            const response = await fetch('/api/settings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ key, value })
+            });
+
+            if (response.ok) {
+                // Settings updated
+            } else {
+                alert('No se pudo actualizar la configuración');
+            }
+        } catch (error) {
+            console.error('Error updating setting:', error);
+            alert('Error de conexión');
+        } finally {
+            setIsSavingSettings(false);
+        }
+    };
+
     if (!isAuthenticated) {
         return (
             <div className="min-h-screen bg-titanus-black flex items-center justify-center p-4">
@@ -203,6 +243,47 @@ export const Admin = () => {
                         <button onClick={handleLogout} className="flex items-center gap-2 text-red-400 hover:text-red-300 font-bold uppercase text-xs tracking-widest bg-red-500/10 px-4 py-2 rounded-lg transition-colors">
                             <LogOut size={16} /> Salir
                         </button>
+                    </div>
+                </div>
+
+                {/* General Settings Section */}
+                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl mb-8">
+                    <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                        <ImageIcon size={20} className="text-titanus-yellow" /> Configuración General
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end">
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-xs font-bold text-gray-500 uppercase ml-1">Texto del Botón Hero</label>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        value={heroButtonText}
+                                        onChange={e => setHeroButtonText(e.target.value)}
+                                        maxLength={40}
+                                        placeholder="Ej. ¡Participa por un mes gratis!"
+                                        className="w-full bg-black/50 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-titanus-yellow outline-none pr-12"
+                                    />
+                                    <span className={`absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold ${heroButtonText.length >= 35 ? 'text-orange-400' : 'text-gray-500'}`}>
+                                        {heroButtonText.length}/40
+                                    </span>
+                                </div>
+                                <p className="text-[10px] text-gray-500 mt-2 ml-1">
+                                    Este texto aparecerá en el botón principal de la página de inicio.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button
+                                onClick={() => updateSetting('hero_button_text', heroButtonText)}
+                                disabled={isSavingSettings}
+                                className="w-full md:w-auto px-8 bg-titanus-yellow disabled:opacity-50 disabled:cursor-not-allowed text-black font-black uppercase py-4 rounded-xl hover:bg-yellow-400 transition-colors shadow-lg hover:shadow-yellow-500/20 flex items-center justify-center gap-2"
+                            >
+                                {isSavingSettings ? 'Guardando...' : 'Guardar Cambios'}
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -21,3 +21,13 @@ CREATE TABLE IF NOT EXISTS ads (
     isActive BOOLEAN DEFAULT TRUE,
     createdAt BIGINT NOT NULL
 );
+
+-- Table for site settings
+CREATE TABLE IF NOT EXISTS settings (
+    `key` VARCHAR(255) PRIMARY KEY,
+    `value` TEXT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Insert default value if it doesn't exist
+INSERT IGNORE INTO settings (`key`, `value`) VALUES ('hero_button_text', '¡Participa por un mes gratis!');
