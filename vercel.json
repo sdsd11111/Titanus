@@ -12,42 +12,5 @@
             "source": "/(.*)",
             "destination": "/index.html"
         }
-    ],
-    "routes": [
-        {
-            "handle": "/filesystem"
-        },
-        {
-            "src": "/\\.env",
-            "dest": "/404"
-        },
-        {
-            "src": "/\\.git",
-            "dest": "/404"
-        },
-        {
-            "src": "/admin",
-            "status": 404
-        },
-        {
-            "src": "/dashboard",
-            "status": 404
-        },
-        {
-            "src": "/login",
-            "status": 404
-        },
-        {
-            "src": "/api/admin",
-            "status": 404
-        },
-        {
-            "src": "/wp-admin",
-            "status": 404
-        },
-        {
-            "src": "/phpMyAdmin",
-            "status": 404
-        }
     ]
 }

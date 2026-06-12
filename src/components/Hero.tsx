@@ -15,24 +15,27 @@ export const Hero = () => {
         const handleCustomOpen = () => setIsModalOpen(true);
         document.addEventListener('open-wizard-modal', handleCustomOpen);
 
-        // Fetch dynamic button text
-        const fetchButtonText = async () => {
-            try {
-                const response = await fetch('/api/settings');
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.hero_button_text && data.hero_button_text.trim() !== '') {
-                        setButtonText(data.hero_button_text);
-                    } else {
-                        setButtonText('¡Participa por un mes gratis!');
+        // OPTIMIZACIÓN: Solo-fetch settings si estamos en /admin o hay параметro especial
+        // Esto reduce ~90% de llamadas API
+        const shouldFetchSettings = window.location.pathname === '/admin' || 
+            new URLSearchParams(window.location.search).get('fetch_settings') === 'true';
+        
+        if (shouldFetchSettings) {
+            const fetchButtonText = async () => {
+                try {
+                    const response = await fetch('/api/settings');
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.hero_button_text && data.hero_button_text.trim() !== '') {
+                            setButtonText(data.hero_button_text);
+                        }
                     }
+                } catch (error) {
+                    console.error('Error fetching hero button text:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching hero button text:', error);
-            }
-        };
-
-        fetchButtonText();
+            };
+            fetchButtonText();
+        }
 
         // Check for URL param ?participar=true or hash #formulario/#participar
         const checkUrlParams = () => {

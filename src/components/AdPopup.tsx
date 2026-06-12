@@ -20,9 +20,30 @@ export const AdPopup = () => {
     useEffect(() => {
         const fetchAds = async () => {
             try {
+                // OPTIMIZACIÓN: Usar localStorage para evitar llamadas API en cada visita
+                const cachedAds = localStorage.getItem('titanus_ads');
+                const cachedTime = localStorage.getItem('titanus_ads_time');
+                const now = Date.now();
+                
+                // Usar caché por 10 minutos
+                if (cachedAds && cachedTime && (now - parseInt(cachedTime)) < 600000) {
+                    const ads: Ad[] = JSON.parse(cachedAds);
+                    const currentAd = ads.filter(a => a.isActive).sort((a, b) => b.createdAt - a.createdAt)[0];
+                    if (currentAd) {
+                        setActiveAd(currentAd);
+                        setTimeout(() => setIsVisible(true), 1500);
+                    }
+                    return;
+                }
+                
+                // Solo hacer fetch si no hay caché o está vencido
                 const response = await fetch('/api/ads');
                 if (response.ok) {
                     const ads: Ad[] = await response.json();
+                    // Guardar en localStorage
+                    localStorage.setItem('titanus_ads', JSON.stringify(ads));
+                    localStorage.setItem('titanus_ads_time', now.toString());
+                    
                     // Get the most recent ACTIVE ad
                     const currentAd = ads.filter(a => a.isActive).sort((a, b) => b.createdAt - a.createdAt)[0];
 
