@@ -21,6 +21,9 @@ export default async function handler(req, res) {
 
     try {
         if (method === 'GET') {
+            // Cache por 2 minutos para ads (datos más dinámicos)
+            res.setHeader('Cache-Control', 'public, max-age=120, s-maxage=120, stale-while-revalidate=300');
+            
             if (id) {
                 const [rows] = await db.execute('SELECT * FROM ads WHERE id = ?', [id]);
                 if (rows.length === 0) return res.status(404).json({ message: 'Ad not found' });

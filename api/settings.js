@@ -18,6 +18,9 @@ export default async function handler(req, res) {
 
     try {
         if (method === 'GET') {
+            // Cache por 5 minutos (300 segundos) para reducir invocaciones serverless
+            res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=300, stale-while-revalidate=600');
+            
             const [rows] = await db.execute('SELECT `key`, `value` FROM settings');
             const settings = rows.reduce((acc, row) => ({ ...acc, [row.key]: row.value }), {});
             return res.json(settings);
