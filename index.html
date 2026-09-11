@@ -124,6 +124,14 @@
   <meta property="og:image:height" content="1056" />
   <meta property="og:image:type" content="image/png" />
 
+  <!-- SEO & Robot Directives -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="format-detection" content="telephone=yes, address=yes, email=yes" />
+  <meta name="geo.region" content="EC-L" />
+  <meta name="geo.placename" content="Loja" />
+  <meta name="geo.position" content="-3.9877;-79.2045" />
+  <meta name="ICBM" content="-3.9877, -79.2045" />
+
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://titanusfitness.com/" />
@@ -161,7 +169,39 @@
       "@id": "https://titanusfitness.com/",
       "url": "https://titanusfitness.com/",
       "telephone": "+593 98 523 4389",
-      "priceRange": "$",
+      "priceRange": "$$",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Membresías Titanus Gym",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Membresía Individual",
+            "description": "Acceso ilimitado a 2 pisos de maquinaria, peso libre y asistencia de entrenadores.",
+            "price": "30.00",
+            "priceCurrency": "USD",
+            "eligibleDuration": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitCode": "MON"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Membresía en Pareja",
+            "description": "Plan mensual para dos personas con acceso total a las instalaciones ($25 por persona).",
+            "price": "50.00",
+            "priceCurrency": "USD",
+            "eligibleDuration": {
+              "@type": "QuantitativeValue",
+              "value": 1,
+              "unitCode": "MON"
+            }
+          }
+        ]
+      },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenida Orillas del Zamora y Segundo Puertas (Sede Principal) / Sede Sur frente a la Universidad Nacional",
