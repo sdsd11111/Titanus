@@ -1,4 +1,50 @@
+# Permisos generales de rastreo
 User-agent: *
 Allow: /
 
+# Motores de búsqueda de Inteligencia Artificial (LLMs)
+# OpenAI / ChatGPT y SearchGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Google Gemini / Vertex AI
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI / LLaMA
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Mistral AI & Cohere
+User-agent: Cohere-ai
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap
 Sitemap: https://titanusfitness.com/sitemap.xml
